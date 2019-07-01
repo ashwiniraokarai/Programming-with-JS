@@ -1,0 +1,44 @@
+<html>
+	
+	<h1></h1>
+
+	<script>
+		
+	function factorial(num){
+		//Logic: fact = num*(num-1)*(num-2)*(num-3)....
+		//E.g.: fact of 5 = 5*4*3*2*1 which is 5*(5-1)*(5-2)*(5-3)*(5-4) [any further means 5-5 which is 0, so don't want that included]
+		//In here "x" is used to compute the value num is to be deducted with in order to count backwards from the number ()
+		var num; //number whose factorial we want
+		var x= 1; 
+		/*x is used to control how many numbers we should keep going backwards from num to multiply with. 
+		Visualisation: fact = num*(num-1)*(num-2)*(num-3) the sequence of numbers we are subtracting with i.e, 1,2,3..etc. needs to generated. 
+		That's being achieved via x. fact = num*(num-x)*(num-(x+1))*(num-(x+2))
+		*/
+		var fact = num; //fact is where the newest product will be stored each time (num*num-x)
+		
+		/*Essentially what we are doing is this. We are just wrapping this in loop since there is a repeating pattern.
+		fact = fact * (num - x); //5 * (5 - 1) => 5*4 ; fact = 20;
+		x = x+1; //2
+		fact = fact * (num - x); //20 * (5 - 2) => 20*3 ; fact = 60;
+		x = x+1; //3
+		fact = fact * (num - x); //60 * (5 - 3) => 60*2 ; fact = 120;
+		x = x+1; //4
+		fact = fact * (num - x); //120 * (5 - 4) => 120*1; fact = 120;
+		x = x+1;
+		*/
+		
+		if (num < 0) { //If the number is negative, there is no point even moving further
+		 return;
+		}
+		
+		while (x < num) {  //This condition stops the loop from doing a num-x when they are equal (E.g. 5-5 = 0 is being prevented)
+			fact = fact * (num - x); //implements num*(num-x)
+			x = x+1; //implements x+1, x+2, x+3...
+		}
+		return(fact);
+	}
+		
+	var result = factorial(5); //Invoke factorial function 
+	document.querySelector("h1").innerText = result; //Display the result on html
+	</script>
+</html>
